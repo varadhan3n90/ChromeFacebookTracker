@@ -6,9 +6,9 @@ function tabUpdated(tabId, changeInfo, tab)
 function checkSocial(tab)
 {
 	var tablink = tab.url;
-	var site = /google/i;
-	var fb = "google"
-	if ( tablink.match(site) == fb )
+	var site = "facebook.com";
+	var re = new RegExp(site,"i");
+	if ( tablink.match(re) == fb )
 		checkCookie();
 	
 }
