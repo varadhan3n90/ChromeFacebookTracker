@@ -8,7 +8,7 @@ function checkSocial(tab)
 	var tablink = tab.url;
 	var site = "facebook.com";
 	var re = new RegExp(site,"i");
-	if ( tablink.match(re) == fb )
+	if ( tablink.match(re) == site )
 		checkCookie();
 	
 }
