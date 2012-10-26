@@ -29,9 +29,10 @@ function checkCookie()
 	var min = getCookie("min");
 	var sec = getCookie("sec");
 	var dt = getCookie("startdate");
+	var todayUsage = getCookie("todayUsageMin");
 	var ptag = document.getElementById("ptag");
 	var msg = "You have been using facebook for ";
-	if (days != null || days != "") {
+	if (days != null || days != NaN) {
 		dt = new Date(dt);
 		var date = dt.getDate();
 		var month = dt.getMonth() + 1;
@@ -49,6 +50,10 @@ function checkCookie()
 	}
 	else
 		ptag.innerHTML = "Timer not yet started";
+	if ( todayUsage != null || todayUsage != "" )
+	{
+		ptag.innerHTML = ptag.innerHTML + "<br>" +"Todays usage: "+todayUsage+" min<br>";
+	}
 }
 
 function resetTimer()
@@ -63,7 +68,7 @@ function resetTimer()
 function createButton()
 {
 	var button = document.getElementById("resetButton");
-	button.onclick = resetTimer;	
+	button.onclick = resetTimer;
 }
 checkCookie();
 createButton();
