@@ -45,8 +45,9 @@ function checkCookie()
 	var sec = getCookie("sec");
 	var dt1 = new Date();
 	var dt2 = getCookie("today");
+	//var todayUsage = getCookie("todayUsage");
 	var alrm = getCookie("alarmFired");
-	if ( days == null  || days == "")
+	if ( days == null  || days == NaN || days == "")
 	{
 		var dt = new Date();
 		setCookie("days","0",365);
@@ -85,18 +86,33 @@ function checkCookie()
 	}
 	
 }
+function todayTracking()
+{
+	var min = getCookie("todayUsageMin");
+	if ( min == null || min == "" )
+	{
+		setCookie("todayUsageMin","0",1);
+	}else
+	{
+		min = parseFloat(min);
+		min = min + 0.5;
+		setCookie("todayUsageMin",min,1);
+	}
+}
 
 setInterval(function(){chrome.tabs.getSelected(null,checkSocial)},3000);
+setInterval(todayTracking,30000);
 chrome.tabs.onUpdated.addListener(tabUpdated);
 var date = new Date();
 var date1 = getCookie("today");
 if (date1 !=null )
 	date1 = new Date(date1);
-if (date1 !=null && Math.abs(date-date1)<1*60*60)
+if (date1 !=null && Math.abs(date-date1)<24*60*60*1000)
 {
 	
 }else
 {
 	setCookie("today",date,10);
+	setCookie("todayUsageMin","0",10);
 	setCookie("alarmFired","false",10);
 }
