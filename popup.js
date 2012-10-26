@@ -32,8 +32,9 @@ function checkCookie()
 	var todayUsage = getCookie("todayUsageMin");
 	var ptag = document.getElementById("ptag");
 	var msg = "You have been using facebook for ";
-	if (days != null || days != NaN) {
+	if (days != null || days != "") {
 		dt = new Date(dt);
+		days = parseInt(days);hrs = parseInt(hrs); min = parseInt(min);
 		var date = dt.getDate();
 		var month = dt.getMonth() + 1;
 		var year = dt.getFullYear();
@@ -64,6 +65,7 @@ function resetTimer()
 	setCookie("min","0",365);
 	setCookie("sec","0",365);
 	setCookie("startdate",dt,365);
+	setCookie("todayUsageMin","0",1);
 }
 function createButton()
 {

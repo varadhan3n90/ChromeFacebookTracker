@@ -9,7 +9,10 @@ function checkSocial(tab)
 	var site = "facebook.com";
 	var re = new RegExp(site,"i");
 	if ( tablink.match(re) == site )
+	{
 		checkCookie();
+		todayTracking();
+	}
 	
 }
 
@@ -95,13 +98,13 @@ function todayTracking()
 	}else
 	{
 		min = parseFloat(min);
-		min = min + 0.5;
+		min = min + 0.05;
 		setCookie("todayUsageMin",min,1);
 	}
 }
 
 setInterval(function(){chrome.tabs.getSelected(null,checkSocial)},3000);
-setInterval(todayTracking,30000);
+//setInterval(todayTracking,30000);
 chrome.tabs.onUpdated.addListener(tabUpdated);
 var date = new Date();
 var date1 = getCookie("today");
