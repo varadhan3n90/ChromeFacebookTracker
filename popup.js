@@ -32,9 +32,12 @@ function checkCookie()
 	var todayUsage = getCookie("todayUsageMin");
 	var ptag = document.getElementById("ptag");
 	var msg = "You have been using facebook for ";
-	if (days != null || days != "") {
+	if (days != null) {
+		days = parseInt(days);
+		if (isNaN(days))
+		{ days = hrs = min = sec = 0; }
 		dt = new Date(dt);
-		days = parseInt(days);hrs = parseInt(hrs); min = parseInt(min);
+		hrs = parseInt(hrs); min = parseInt(min);
 		var date = dt.getDate();
 		var month = dt.getMonth() + 1;
 		var year = dt.getFullYear();
@@ -53,7 +56,7 @@ function checkCookie()
 		ptag.innerHTML = "Timer not yet started";
 	if ( todayUsage != null || todayUsage != "" )
 	{
-		ptag.innerHTML = ptag.innerHTML + "<br>" +"Todays usage: "+todayUsage+" min<br>";
+		ptag.innerHTML = ptag.innerHTML + "<br>" +"Todays usage: "+Math.floor(parseFloat(todayUsage))+" min<br>";
 	}
 }
 
